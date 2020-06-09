@@ -23,32 +23,16 @@ router.post('/store', async function(req, res) {
 });
 
 // RETRIEVE STORE BY PARAMETERS
-router.get('/stores', async function(req, res) {
-    if (req.body.name) {
-        storeService.storeFindByName(req.body.name)
-        .then((doc) => {
-            console.log(doc);
-            return res.status(200).send(doc);
-        })
-        .catch((err) => {
-            console.log(err.message);
-            return res.status(400).send("Store not found by name.");
-        })
-    }
-    else if (req.body.address) {
-        storeService.storeFindByAddress(req.body.address)
-        .then((doc) => {
-            console.log(doc);
-            return res.status(200).send(doc);
-        })
-        .catch((err) => {
-            console.log(err.message);
-            return res.status(400).send("Store not found by address.");
-        })
-    }
-    else {
-        return res.status(400).send("Field missing in the body: name or address required.");
-    }
+router.get('/store/parameters', async function(req, res) {
+    storeService.storeFindByParameters(req.query)
+    .then((doc) => {
+        console.log(doc);
+        return res.status(200).send(doc);
+    })
+    .catch((err) => {
+        console.log(err.message);
+        return res.status(500).send("Couldn't get stores.");
+    })
 });
 
 // RETRIEVE STORE BY ID

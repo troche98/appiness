@@ -14,6 +14,21 @@ class StoreService {
         });
     }
 
+    async storeFindByParameters(query) {
+        return new Promise((resolve, reject) => {
+            Store.find({$or:[
+                {address: query.address}, 
+                {name: query.name}
+            ]})
+            .then(docs => {
+                resolve(docs);
+            })
+            .catch(err => {
+                reject(err);
+            });
+        });
+    }
+
     async storeFindById(id_store) {
         return new Promise((resolve, reject) => {
             Store.find({_id: id_store})

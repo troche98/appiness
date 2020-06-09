@@ -27,12 +27,7 @@ Update a Store information:
 
 Retrieve a Store by parameters:
 - METHOD: GET
-- URL: http://localhost:8080/api/stores
-- BODY: {
-    name: String,
-    address: String
-}
-- name or address required
+- URL: http://localhost:8080/api/store/parameters?name=...address=...
 
 Retrieve all stores:
 - METHOD: GET
@@ -61,6 +56,10 @@ Create an order with items:
 Retrieve all orders:
 - METHOD: GET
 - URL: http://localhost:8080/api/order
+
+Retrieve order by parameters:
+- METHOD: GET
+- URL: http://localhost:8080/api/order/parameters?address=...confirmation_date=...status=...items=...
 
 #PAYMENT
 

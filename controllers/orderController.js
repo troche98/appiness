@@ -51,4 +51,17 @@ router.get('/order', async function(req, res) {
     })
 })
 
+// GET ORDER by parameter
+router.get('/order/parameters', async function(req, res) {
+    orderService.orderFindByParameters(req.query)
+    .then((doc) => {
+        console.log(doc);
+        return res.status(200).send(doc);
+    })
+    .catch((err) => {
+        console.log(err.message);
+        return res.status(500).send("Couldn't get orders.");
+    })
+})
+
 module.exports = router;
