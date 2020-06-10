@@ -28,6 +28,19 @@ class PaymentService {
         });
     }
 
+    async paymentUpdate(id_order, newValues) {
+        return new Promise((resolve, reject) => {
+            Payment.updateOne({id_order: id_order}, newValues)
+            .then(docs => {
+                console.log(docs);
+                resolve("Payment set to concluded.");
+            })
+            .catch(err => {
+                reject(err);
+            })
+        });
+    }
+
     async paymentDelete() {
         return new Promise((resolve, reject) => {
             Payment.remove({})

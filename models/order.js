@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var Item = require('./item');
 
 const orderSchema = mongoose.Schema({
     address: {
@@ -13,20 +14,7 @@ const orderSchema = mongoose.Schema({
         type: String,
     },
     items: {
-        type : [{
-            description: {
-                type: String,
-                required: true,
-            },
-            unit_price: {
-                type: Number,
-                required: true,
-            },
-            quantity: {
-                type: Number,
-                required: true,
-            }
-        }]
+        type : [{String, Number, Number}]
     },
     total_price: {
         type: Number,

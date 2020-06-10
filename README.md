@@ -61,6 +61,15 @@ Retrieve order by parameters:
 - METHOD: GET
 - URL: http://localhost:8080/api/order/parameters?address=...confirmation_date=...status=...items=...
 
+Refund Order or any Order Item:
+- METHOD: POST
+- URL: http://localhost:8080/api/order/refund/:id_order
+- BODY: {
+    items: [id_item] ([optionnal] to refund items from the order, if not specified refund all order)
+}
+- id_order is required
+(order or order item can be refund if it is within 10days after confirmation_date)
+
 #PAYMENT
 
 Create a payment for an order:
