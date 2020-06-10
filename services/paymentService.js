@@ -3,6 +3,7 @@ var Order = require('../models/order');
 
 class PaymentService {
 
+    // GET THE PRICE FROM AN ORDER ID
     async getPriceFromOrder(id_order) {
         return new Promise((resolve, reject) => {
             Order.find({_id: id_order})
@@ -15,6 +16,7 @@ class PaymentService {
         });
     }
 
+    // CREATE A PAYMENT BASED ON THE PAYMENT MODEL
     async paymentCreate(_newPayment) {
         return new Promise((resolve, reject) => {
             var newPayment = new Payment(_newPayment);
@@ -28,6 +30,7 @@ class PaymentService {
         });
     }
 
+    // UPDATE THE PAYMENT FROM THE ORDER ID BASED ON NEW VALUES
     async paymentUpdate(id_order, newValues) {
         return new Promise((resolve, reject) => {
             Payment.updateOne({id_order: id_order}, newValues)
@@ -41,6 +44,7 @@ class PaymentService {
         });
     }
 
+    // DELETE ALL PAYMENTS
     async paymentDelete() {
         return new Promise((resolve, reject) => {
             Payment.remove({})
@@ -53,6 +57,7 @@ class PaymentService {
         });
     }
 
+    // RETRIEVE ALL PAYMENTS
     async paymentFindAll() {
         return new Promise((resolve, reject) => {
             Payment.find({})

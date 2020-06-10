@@ -1,9 +1,9 @@
 var Order = require('../models/order');
-var Item = require('../models/item');
 var paymentService = require('./paymentService');
 
 class OrderService {
 
+    // UPDATE AN ORDER BASED ON HIS ID AND NEW VALUES
     async orderUpdate(id_order, newValues) {
         return new Promise((resolve, reject) => {
             Order.updateOne({_id: id_order}, newValues)
@@ -16,6 +16,7 @@ class OrderService {
         })
     }
 
+    // HANDLE THE REFUND FOR AN ORDER OR ANY ORDER ITEM
     async orderRefundAll(id_order, _items) {
         return new Promise((resolve, reject) => {
             Order.find({_id: id_order})
@@ -54,6 +55,7 @@ class OrderService {
         });
     }
 
+    // RETRIEVE ORDERS BASED ON PARAMETERS
     async orderFindByParameters(query) {
         return new Promise((resolve, reject) => {
             Order.find({$or:[
@@ -71,6 +73,7 @@ class OrderService {
         });
     }
 
+    // CREATE AN ORDER BASED ON ORDER MODEL
     async orderCreate(_newOrder) {
         return new Promise((resolve, reject) => {
             var newOrder = new Order(_newOrder);
@@ -84,6 +87,7 @@ class OrderService {
         });
     }
 
+    // RETRIEVE ALL ORDERS
     async orderFindAll() {
         return new Promise((resolve, reject) => {
             Order.find({})
