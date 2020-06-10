@@ -24,14 +24,17 @@ class OrderService {
                 const today = new Date();
                 const diffDays = Math.round(Math.abs((docs[0].confirmation_date - today) / oneDay));
                 if (diffDays <= 10) {
-                    console.log(_items.length);
-                    if (_items && _items.length >= 1) {
+                    if (_items) {
+                        if (_items.length < 1) {
+                            resolve("No given item.");
+                        }
                         for (var i = 0; i < docs[0].items.length; i++) {
                             var index = _items.includes(docs[0].items[i]._id.toString());
                             if (index >= 0)
                                 docs[0].items.splice(i, 1);
                         }
-                        this.orderUpdate(docs[0]._id, {items: docs[0].items});
+                        this.orderUpdate(docs[0]._id, {items: docs[0].items, status: "concluded"});
+                        paymentService.paymentUpdate(docs[0]._id, {status: "concluded"});
                         resolve("Items refunded.");
                     }
                     else {
